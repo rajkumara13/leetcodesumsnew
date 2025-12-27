@@ -23,10 +23,33 @@ class Leetcodesums2{
         a=a*n;
         return a;
     }
+    public int dividetwointeger(int dividend,int divisor){  // leetcodesum(29)
+        if(dividend==Integer.MAX_VALUE && divisor==-1){
+            return Integer.MIN_VALUE;
+        }
+        int c=1;
+        if(dividend<0 && divisor>0 || dividend>0 && divisor<0){
+            c=-1;
+        }
+        long a=Math.abs((long)dividend);
+        long b=Math.abs((long)divisor);
+        int count=0;
+        while(a>=b){
+            long temp=b;
+            long count1=1;
+            while(a>=temp+temp){
+                temp+=temp;
+                count1+=count1;
+            }
+            a-=temp;
+            count+=count1;
+        }
+        return count*c;
+    }
 }
     class Main{
     public static void main(String[] args) {
         Leetcodesums2 b1=new Leetcodesums2();
-        System.out.println(b1.integerbreak(10));
+        System.out.println(b1.dividetwointeger(37,4));
     }
 }
