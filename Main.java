@@ -46,7 +46,7 @@ class Leetcodesums2{
         }
         return count*c;
     }
-    public int countsetbit(int n) {
+    public int countsetbit(int n) {     // countsetbits sum not leetcode
         if (n == 0) return 0;
         int x = poweroftwo(n);
         int bitstillspower=x*(1<<(x-1));
