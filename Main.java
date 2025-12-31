@@ -61,10 +61,38 @@ class Leetcodesums2{
         }
         return x;
     }
+    public int reversebinary(int n){
+        int value=0;
+        for(int i=0;i<32;i++){
+            value=value<<1;
+            value=value | (n&1);
+            n=n>>1;
+        }
+        return value;
+    }
+    public int SquaresofSortedArray(int[] nums){ //leetcodesum 977
+       for(int i=0;i<nums.length;i++){
+           nums[i]=(Math.abs(nums[i]*nums[i]));
+       }
+       for(int i=0;i<nums.length;i++){
+           for(int j=i+1;j<nums.length;j++){
+               if(nums[i]>nums[j]){
+                   int temp=nums[i];
+                   nums[i]=nums[j];
+                   nums[j]=temp;
+               }
+           }
+       }
+       for(int a:nums){
+          System.out.print(a+",");
+       }
+       return 0;
+    }
 }
     class Main{
     public static void main(String[] args) {
         Leetcodesums2 b1=new Leetcodesums2();
-        System.out.println(b1.countsetbit(8));
+        int[] nums={-4,-1,0,3,10};
+        System.out.println(b1.SquaresofSortedArray(nums));
     }
 }
