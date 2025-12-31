@@ -46,35 +46,25 @@ class Leetcodesums2{
         }
         return count*c;
     }
-    public int countsetbit(int n){
-        int x=1;
-        int temp=2;
-        int value=1;
-        int formulavalue=1;
-        int msbcount=0;
-        int remcount=0;
-        while(temp<=n) {
-            temp += temp;
-            if (temp <= n) {
-                value = temp;
-                x++;
-            }
+    public int countsetbit(int n) {
+        if (n == 0) return 0;
+        int x = poweroftwo(n);
+        int bitstillspower=x*(1<<(x-1));
+        int msbcount=n-(1<<x)+1;
+        int remainnigcount=n-(1<<x);
+        return bitstillspower+msbcount+countsetbit(remainnigcount);
+    }
+    private int poweroftwo(int n){
+        int x=0;
+        while(1<<(x+1)<=n){
+            x++;
         }
-            for(int i=1;i<=x-1;i++){
-                formulavalue=formulavalue*2;
-            }
-        formulavalue*=x;
-            msbcount=(n-x)+1;
-            remcount=n-x;
-            if(remcount>2){
-              x=x;
-            }
-        return formulavalue;
+        return x;
     }
 }
     class Main{
     public static void main(String[] args) {
         Leetcodesums2 b1=new Leetcodesums2();
-        System.out.println(b1.countsetbit(35));
+        System.out.println(b1.countsetbit(8));
     }
 }
