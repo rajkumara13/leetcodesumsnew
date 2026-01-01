@@ -88,11 +88,34 @@ class Leetcodesums2{
        }
        return 0;
     }
+    public int heightchecker(int [] heights){
+        int len=heights.length;
+        int [] sort=new int[len];
+        int count=0;
+        for(int i=0;i<len;i++){
+            sort[i]=heights[i];
+        }
+        for(int i=0;i<len;i++){
+            for(int j=i+1;j<len;j++){
+                if(sort[i]>sort[j]){
+                    int temp =sort[i];
+                    sort[i]=sort[j];
+                    sort[j]=temp;
+                }
+            }
+        }
+        for(int i=0;i<len;i++){
+            if(sort[i]!=heights[i]){
+                count++;
+            }
+        }
+        return count;
+    }
 }
     class Main{
     public static void main(String[] args) {
         Leetcodesums2 b1=new Leetcodesums2();
-        int[] nums={-4,-1,0,3,10};
-        System.out.println(b1.SquaresofSortedArray(nums));
+        int[] nums={2,-1,0,3,10};
+        System.out.println(b1.heightchecker(nums));
     }
 }
