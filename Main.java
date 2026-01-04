@@ -111,11 +111,24 @@ class Leetcodesums2{
         }
         return count;
     }
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer,Integer>map=new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            int a=target-nums[i];
+            if(map.containsKey(a)){
+                return new int[]{map.get(a),i};
+            }
+            else{
+                map.put(nums[i],i);
+            }
+        }
+        return new int[] {-1,-2};
+    }
 }
     class Main{
     public static void main(String[] args) {
         Leetcodesums2 b1=new Leetcodesums2();
-        int[] nums={2,-1,0,3,10};
-        System.out.println(b1.heightchecker(nums));
+        int[] nums={8,1,2,3,10};
+        System.out.println(b1.twoSum(nums,5));
     }
 }
