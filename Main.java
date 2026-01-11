@@ -111,7 +111,7 @@ class Leetcodesums2{
         }
         return count;
     }
-    public int[] twoSum(int[] nums, int target) {
+    public int[] twoSum(int[] nums, int target) {    //leetcodesum1
         Map<Integer,Integer>map=new HashMap<>();
         for(int i=0;i<nums.length;i++){
             int a=target-nums[i];
@@ -124,11 +124,54 @@ class Leetcodesums2{
         }
         return new int[] {-1,-2};
     }
+    public boolean containsDuplicate(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int i : nums) {
+            if (set.contains(i)) {
+                return true;
+            } else {
+                set.add(i);
+            }
+        }
+        return false;
+    }
+    public int fib(int n) {
+            if(n==0){
+                return 0;
+            }
+            if(n==1)return 1;
+            return fib(n-1)+fib(n-2);
+        }
+    }
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>>arr=new ArrayList<>();
+        for(int i=0;i<numRows;i++){
+            arr.add(new ArrayList<>());
+            for(int j=0;j<=i;j++){
+                if(j==0){
+                    arr.get(i).add(1);
+                }if(j!=0 && j<i && i!=0){
+                    arr.get(i).add((arr.get(i-1).get(j))+(arr.get(i-1).get(j+1)));
+                }
+                if(j!=0){
+                    if(j<=i){
+                        arr.get(i).add(1);
+                    }
+                }
+            }
+        }
+        return arr;
+    }
+}
+class Run implements Runnable{
+    public void run(){
+        System.out.println("RUN"+Thread.currentThread().getName());
+    }
 }
     class Main{
     public static void main(String[] args) {
-        Leetcodesums2 b1=new Leetcodesums2();
-        int[] nums={8,1,2,3,10};
-        System.out.println(b1.twoSum(nums,5));
+      Leetcodesums2 s=new Leetcodesums2();
+       System.out.println(s.fib(7));
     }
 }
