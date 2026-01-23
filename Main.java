@@ -142,68 +142,51 @@ class Leetcodesums2{
             if(n==1)return 1;
             return fib(n-1)+fib(n-2);
         }
+    public List<List<Integer>> permutation(int [] nums){   //leetcode sum 46
+        List<List<Integer>>res=new ArrayList<>();
+        backtrack(res,new ArrayList<>(),nums);
+        return res;
+
+
     }
-class Solution {
-    public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>>arr=new ArrayList<>();
-        for(int i=0;i<numRows;i++){
-            arr.add(new ArrayList<>());
-            for(int j=0;j<=i;j++){
-                if(j==0){
-                    arr.get(i).add(1);
-                }if(j!=0 && j<i && i!=0){
-                    arr.get(i).add((arr.get(i-1).get(j))+(arr.get(i-1).get(j+1)));
+    public static void backtrack(List<List<Integer>>res,ArrayList<Integer>temp,int [] nums){
+        if(temp.size()==nums.length){
+            res.add(new ArrayList<>(temp));
+            return;
+        }
+        for(int num:nums){
+            if(temp.contains(num)){
+                continue;
+            }
+            temp.add(num);
+            backtrack(res,temp,nums);
+            temp.remove(temp.size()-1);
+        }
+    }
+    public List<Integer> productoftwo(int [] nums,int target){
+        ArrayList<Integer>res=new ArrayList<>();
+        HashMap<Integer,Integer>map=new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]!=0 && target%nums[i]==0){
+                int value=target/nums[i];
+                if(map.containsKey(value)){
+                    res.add(map.get(value));
+                    res.add(i);
+
+                    return res;
                 }
-                if(j!=0){
-                    if(j<=i){
-                        arr.get(i).add(1);
-                    }
-                }
+                map.put(nums[i],i);
             }
         }
-        return arr;
+        return new ArrayList<>(Arrays.asList(-1,-1));
     }
-}
-class Run implements Runnable{
-    public void run(){
-        System.out.println("RUN"+Thread.currentThread().getName());
     }
-        public boolean isvalid(char [][] board,int i,int j,char c){
-            for(int k=0;k<9;k++){
-                if(board[i][k]==c)return false;
-                if(board[k][j]==c)return false;
-                int r=3*(i/3)+k/3;
-                int col=3*(j/3)+k%3;
-                if(board[r][col]==c)return false;
-            }
-            return true;
-        }
-        public boolean solve(char[][] board){
-            for(int i=0;i<9;i++){
-                for(int j=0;j<9;j++){
-                    if(board[i][j]=='.'){
-                        for(char c='1';c<='9';c++){
-                            if(isvalid(board,i,j,c)){
-                                board[i][j]=c;
-                                if(solve(board)){
-                                    return true;
-                                }
-                                board[i][j]='.';
-                            }
-                        }
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-        public void solveSudoku(char[][] board) {
-            solve(board);
-        }
-    }
+
+
     class Main{
     public static void main(String[] args) {
-      Leetcodesums2 s=new Leetcodesums2();
-       System.out.println(s.fib(7));
+        Leetcodesums2 b=new Leetcodesums2();
+      int [] nums={2,4,6,5,6};
+      System.out.println(b.productoftwo(nums,24));
     }
 }
