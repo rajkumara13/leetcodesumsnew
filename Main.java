@@ -180,13 +180,32 @@ class Leetcodesums2{
         }
         return new ArrayList<>(Arrays.asList(-1,-1));
     }
+    public int sqrt(int x){
+        int [] nums=new int[x];
+        for(int i=1;i<=x;i++){
+            nums[i-1]=i;
+        }
+        int sol=0;
+        int low=0;
+        int high=nums.length-1;
+        while(low<high){
+           int mid=(nums[low]+nums[high])/2;
+           if(mid*mid <=x){
+               low=mid+1;
+               sol=mid;
+           }
+           else{
+               high=mid-1;
+           }
+        }
+        return sol;
+    }
     }
 
 
     class Main{
     public static void main(String[] args) {
         Leetcodesums2 b=new Leetcodesums2();
-      int [] nums={2,4,6,5,6};
-      System.out.println(b.productoftwo(nums,24));
+      System.out.println(b.sqrt());
     }
 }
