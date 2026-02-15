@@ -200,6 +200,26 @@ class Leetcodesums2{
         }
         return sol;
     }
+    public String addBinary(String a, String b) {
+       int i=a.length()-1;
+       int j=b.length()-1;
+       int c=0;
+       StringBuilder sb=new StringBuilder();
+       while(i>=0 ||j>=0){
+        int s1=(i>=0)?a.charAt(i)-'0':0;
+        int s2=(j>=0)?b.charAt(j)-'0':0;
+        int sum=(s1^s2^c);
+        c=((s1&s2)|(s1&c)|(s2&c));
+        sb.insert(0,sum);
+        i--;
+        j--;
+       }
+       
+    if(c==1){
+        sb.insert(0,c);
+    }
+    return sb.toString();
+}
     }
 
 
