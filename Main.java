@@ -86,7 +86,7 @@ class Leetcodesums2{
        for(int a:nums){
           System.out.print(a+",");
        }
-       return 0;
+     return 0;
     }
     public int heightchecker(int [] heights){
         int len=heights.length;
