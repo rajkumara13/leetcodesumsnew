@@ -220,6 +220,21 @@ class Leetcodesums2{
     }
     return sb.toString();
 }
+    public int lengthOfLongestSubstring(String s) {
+       int Max=0;
+       int [] arr=new int[256];
+       Arrays.fill(arr,-1);
+       int l=0;
+       for(int i=0;i<s.length();i++){
+        int ch=s.charAt(i);
+        if(arr[ch]>=l){
+               l=arr[ch]+1;
+        }
+        arr[ch]=i;
+        Max=Math.max(Max,i-l+1);
+       }
+       return Max;
+}
     }
 
 
