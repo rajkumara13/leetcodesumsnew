@@ -220,7 +220,7 @@ class Leetcodesums2{
     }
     return sb.toString();
 }
-    public int lengthOfLongestSubstring(String s) {
+    public int lengthOfLongestSubstring(String s) { ///leetcode sum 3
        int Max=0;
        int [] arr=new int[256];
        Arrays.fill(arr,-1);
